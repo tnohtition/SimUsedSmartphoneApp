@@ -1,7 +1,6 @@
 defmodule SimUsedSmartphoneApp.Inventory.AttributeService do
-  import Ecto.Query
   alias SimUsedSmartphoneApp.Repo
-  alias SimUsedSmartphoneApp.Inventory.{Attribute, ModelVariant}
+  alias SimUsedSmartphoneApp.Inventory.Attribute
 
   @spec get_or_create_attributes(list(map())) ::
           {:ok, list(Attribute.t())} | {:error, Ecto.Changeset.t()}
@@ -19,7 +18,7 @@ defmodule SimUsedSmartphoneApp.Inventory.AttributeService do
     end
   end
 
-  def get_or_create_attribute(%{"id" => id} = params) do
+  def get_or_create_attribute(%{"id" => id} = _params) do
     if attribute = Attribute |> Repo.get(id) do
       {:ok, attribute}
     else
@@ -28,6 +27,6 @@ defmodule SimUsedSmartphoneApp.Inventory.AttributeService do
   end
 
   def get_or_create_attribute(params) do
-    params |> Attribute.changeset() |> Repo.insert()
+    %Attribute{} |> Attribute.changeset(params) |> Repo.insert()
   end
 end

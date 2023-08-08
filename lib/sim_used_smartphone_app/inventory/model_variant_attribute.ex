@@ -2,10 +2,10 @@ defmodule SimUsedSmartphoneApp.Inventory.ModelVariantAttribute do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias SimUsedSmartphoneApp.Inventory.{VariantModel, Attribute}
+  alias SimUsedSmartphoneApp.Inventory.{ModelVariant, Attribute}
 
   schema "model_variants_attributes" do
-    belongs_to(:model_variant, VariantModel)
+    belongs_to(:model_variant, ModelVariant)
     belongs_to(:attribute, Attribute)
     timestamps()
   end

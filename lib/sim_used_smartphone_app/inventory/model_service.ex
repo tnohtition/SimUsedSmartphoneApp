@@ -4,7 +4,7 @@ defmodule SimUsedSmartphoneApp.Inventory.ModelService do
 
   @spec get_or_create_model(map()) ::
           {:ok, Model.t()} | {:error, :not_found} | {:error, Ecto.Changeset.t()}
-  def get_or_create_model(%{"id" => id} = params) do
+  def get_or_create_model(%{"id" => id} = _params) do
     if model = Model |> Repo.get(id) do
       {:ok, model}
     else
@@ -13,6 +13,6 @@ defmodule SimUsedSmartphoneApp.Inventory.ModelService do
   end
 
   def get_or_create_model(params) do
-    params |> Model.changeset() |> Repo.insert()
+    %Model{} |> Model.changeset(params) |> Repo.insert()
   end
 end

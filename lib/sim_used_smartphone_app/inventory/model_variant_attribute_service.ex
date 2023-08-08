@@ -1,7 +1,6 @@
 defmodule SimUsedSmartphoneApp.Inventory.ModelVariantAttributeService do
   alias SimUsedSmartphoneApp.Repo
   alias SimUsedSmartphoneApp.Inventory.{ModelVariantAttribute, ModelVariant, Attribute}
-  alias Ecto.Changeset
 
   @spec create(ModelVariant.t(), list(Attribute.t()) | Attribute.t()) ::
           {:ok, ModelVariantAttribute.t()} | {:error, Ecto.Changeset.t()}
@@ -20,8 +19,11 @@ defmodule SimUsedSmartphoneApp.Inventory.ModelVariantAttributeService do
   end
 
   def create(%ModelVariant{} = model_variant, %Attribute{} = attribute) do
-    %{"model_variant_id" => model_variant.id, "attribute_id" => attribute.id}
-    |> ModelVariantAttribute.changeset()
+    %ModelVariantAttribute{}
+    |> ModelVariantAttribute.changeset(%{
+      "model_variant_id" => model_variant.id,
+      "attribute_id" => attribute.id
+    })
     |> Repo.insert()
   end
 end

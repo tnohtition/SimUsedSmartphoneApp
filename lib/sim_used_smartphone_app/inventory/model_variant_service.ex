@@ -5,6 +5,6 @@ defmodule SimUsedSmartphoneApp.Inventory.ModelVariantService do
   @spec create(map()) ::
           {:ok, ModelVariant.t()} | {:error, Ecto.Changeset.t()}
   def create(params) do
-    params |> ModelVariant.changeset() |> Repo.insert()
+    %ModelVariant{} |> ModelVariant.changeset(params) |> Repo.insert()
   end
 end
