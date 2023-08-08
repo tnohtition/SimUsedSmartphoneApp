@@ -15,6 +15,11 @@ defmodule SimUsedSmartphoneAppWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug :fetch_live_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   scope "/", SimUsedSmartphoneAppWeb do
@@ -23,8 +28,8 @@ defmodule SimUsedSmartphoneAppWeb.Router do
     get "/", PageController, :index
   end
 
-  scope "/", SimUsedSmartphoneAppWeb do
-    pipe_through [:browser, :require_authenticated_user]
+  scope "/api", SimUsedSmartphoneAppWeb do
+    pipe_through [:api, :require_authenticated_user]
 
     post("/inventory/register", InventoryController, :create)
   end
