@@ -23,6 +23,12 @@ defmodule SimUsedSmartphoneAppWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/", SimUsedSmartphoneAppWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    post("/inventory/register", InventoryController, :create)
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", SimUsedSmartphoneAppWeb do
   #   pipe_through :api

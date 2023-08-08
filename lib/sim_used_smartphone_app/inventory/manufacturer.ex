@@ -1,11 +1,11 @@
 defmodule SimUsedSmartphoneApp.Inventory.Manufacturer do
   use Ecto.Schema
   import Ecto.Changeset
-  # alias SimUsedSmartphoneApp.Model
+  alias SimUsedSmartphoneApp.Inventory.Model
 
   schema "manufactors" do
     field(:name, :string)
-    # has_many(:models, Model)
+    has_many(:models, Model)
     timestamps()
   end
 

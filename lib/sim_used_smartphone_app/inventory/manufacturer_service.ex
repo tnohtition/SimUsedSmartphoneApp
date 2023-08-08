@@ -1,6 +1,6 @@
-defmodule SimUsedSmartphoneApp.ManufacturerService do
+defmodule SimUsedSmartphoneApp.Inventory.ManufacturerService do
   alias SimUsedSmartphoneApp.Repo
-  alias SimUsedSmartphoneApp.Manufacturer
+  alias SimUsedSmartphoneApp.Inventory.Manufacturer
 
   @spec get_or_create_manufacturers(map()) ::
           {:ok, Manufacturer.t()} | {:error, :not_found} | {:error, Ecto.Changeset.t()}
