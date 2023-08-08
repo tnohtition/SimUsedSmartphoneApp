@@ -2,7 +2,7 @@ defmodule SimUsedSmartphoneApp.Inventory.ModelVariant do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias SimUsedSmartphoneApp.Inventory.Model
+  alias SimUsedSmartphoneApp.Inventory.{Model, ModelVariantAttribute}
 
   schema "model_variants" do
     field(:sku, :string)
@@ -10,6 +10,8 @@ defmodule SimUsedSmartphoneApp.Inventory.ModelVariant do
     field(:stock_quantity, :integer)
 
     belongs_to(:model, Model)
+    has_many(:model_variants_attributes, ModelVariantAttribute)
+    has_many(:attributes, through: [:model_variants_attributes, :attribute])
     timestamps()
   end
 

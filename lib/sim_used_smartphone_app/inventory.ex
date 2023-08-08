@@ -20,7 +20,7 @@ defmodule SimUsedSmartphoneApp.Inventory do
   Register a product (Model Variant) interface
 
   Example
-      iex> SIMApp.Abc.register(%User{}, %{
+      iex> SimUsedSmartphoneApp.register(%User{}, %{
         "manufacturer" => %{"id" => 1, "name" => "Apple"},
         "model" => %{"name" => "iPhone X"},
         "model_variant" => %{"sku" => "APPLE-201910-XYZ", "price" => "100.2", "stock_quantity" => 100},
@@ -62,5 +62,17 @@ defmodule SimUsedSmartphoneApp.Inventory do
       {:error, _failed_operation, failed_value, _changes_so_far} ->
         {:error, failed_value}
     end
+  end
+
+  @doc """
+  Get model variant with preloaded data
+
+  Example
+      iex> SimUsedSmartphoneApp.get_model_variant(1)
+      %ModelVariant{id: 123}
+  """
+  @spec get_model_variant(integer()) :: ModelVariant.t() | nil
+  def get_model_variant(id) do
+    ModelVariant |> Repo.get(id) |> Repo.preload(:attributes, model: :manufacturer)
   end
 end
