@@ -2,7 +2,7 @@ defmodule SimUsedSmartphoneAppWeb.InventoryController do
   use SimUsedSmartphoneAppWeb, :controller
   alias SimUsedSmartphoneApp.Inventory
 
-  # action_fallback SimUsedSmartphoneAppWeb.ActionFallback
+  action_fallback SimUsedSmartphoneAppWeb.FallbackController
 
   def create(conn, params) do
     user = conn.assigns.current_user
